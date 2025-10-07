@@ -1,0 +1,9 @@
+﻿body{font-family:system-ui,Arial,sans-serif;margin:16px;background:#fafafa;color:#222}
+h1{font-size:20px;margin:0 0 12px}
+.toolbar{display:flex;gap:8px;margin-bottom:12px}
+button{padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer}
+button.active{background:#222;color:#fff}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #eee;padding:8px;text-align:left}
+tr:nth-child(even){background:#fcfcfc}
+small.muted{color:#666}

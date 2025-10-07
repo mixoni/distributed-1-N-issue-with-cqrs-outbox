@@ -1,0 +1,6 @@
+backend/src/Bff.Api/obj/
+backend/src/BuildingBlocks/obj/
+backend/src/Customers.Api/obj/
+backend/src/Orders.Api/obj/
+backend/src/Orders.Read.Projector/obj/
+backend/src/OutboxRelay.Worker/obj/

@@ -1,0 +1,17 @@
+﻿<div class=""toolbar"">
+  <button (click)=""setMode('naive')"" [class.active]=""mode() === 'naive'"">Naive (N+1)</button>
+  <button (click)=""setMode('batched')"" [class.active]=""mode() === 'batched'"">Batched</button>
+  <button (click)=""setMode('read')"" [class.active]=""mode() === 'read'"">CQRS Read</button>
+</div>
+<div *ngIf=""loading()"">Loadingâ€¦</div>
+<div *ngIf=""error()"">{{error()}}</div>
+<table *ngIf=""!loading() && !error()"">
+  <thead><tr><th>OrderId</th><th>Customer</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr *ngFor=""let o of data()"">
+      <td>{{ o.id || o.orderId }}</td>
+      <td>{{ o.customerName }}</td>
+      <td>{{ o.total }}</td>
+    </tr>
+  </tbody>
+</table>
