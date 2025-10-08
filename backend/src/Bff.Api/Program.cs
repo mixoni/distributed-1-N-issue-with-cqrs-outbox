@@ -99,14 +99,19 @@ namespace Bff.Api.Controllers
         public async Task<ActionResult<IEnumerable<object>>> ReadModel()
         {
             _metrics.Reset();
-            
+            var sw = Stopwatch.StartNew();
+
+            var data = await _http.CreateClient("orders").GetFromJsonAsync<List<OrdersReadRow>>("api/orders/read");
+
+            sw.Stop();
+
             Response.Headers["X-Metrics-Total"] = _metrics.Total.ToString();
             Response.Headers["X-Metrics-CustomersById"] = _metrics.CustomersById.ToString();
             Response.Headers["X-Metrics-CustomersBatch"] = _metrics.CustomersBatch.ToString();
             Response.Headers["X-Metrics-OrdersList"] = _metrics.OrdersList.ToString();
             Response.Headers["X-Metrics-OrdersRead"] = _metrics.OrdersRead.ToString();
             
-            return Ok(await _http.CreateClient("orders").GetFromJsonAsync<List<OrdersReadRow>>("api/orders/read"));
+            return Ok(data);
         }
 
     }
