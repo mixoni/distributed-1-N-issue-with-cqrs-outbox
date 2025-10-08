@@ -11,13 +11,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(opt => opt.AddDefaultPolicy(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
 var app = builder.Build();
-app.UseSwagger(); app.UseSwaggerUI();
+app.UseSwagger(); 
+app.UseSwaggerUI();
 app.UseCors();
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<OrdersDbContext>();
     db.Database.EnsureCreated();
 }
+
 app.MapControllers();
 app.Run();
 
@@ -87,12 +90,14 @@ namespace Orders.Api.Controllers
         public async Task<ActionResult<IEnumerable<object>>> List()
             => Ok(await _db.Orders.OrderByDescending(o => o.CreatedAtUtc)
                   .Select(o => new { o.Id, o.CustomerId, o.Total, o.CreatedAtUtc })
-                  .Take(50).ToListAsync());
+                //   .Take(50)
+                  .ToListAsync());
 
         [HttpGet("read")]
         public async Task<ActionResult<IEnumerable<object>>> Read()
             => Ok(await _db.OrdersRead.OrderByDescending(x => x.CreatedAtUtc)
                   .Select(x => new { x.OrderId, x.CustomerName, x.Total, x.CreatedAtUtc })
-                  .Take(50).ToListAsync());
+                //   .Take(50)
+                  .ToListAsync());
     }
 }

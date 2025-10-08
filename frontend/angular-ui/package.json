@@ -1,10 +1,10 @@
-﻿{
+{
   "name": "angular-ui",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4200 --proxy-config proxy.conf.json",
+    "start": "ng serve --port 4200 --proxy-config proxy.conf.json --poll=2000",
     "build": "ng build"
   },
   "dependencies": {

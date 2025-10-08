@@ -7,3 +7,12 @@ table{border-collapse:collapse;width:100%;background:#fff}
 th,td{border:1px solid #eee;padding:8px;text-align:left}
 tr:nth-child(even){background:#fcfcfc}
 small.muted{color:#666}
+
+.kpi{
+    padding:6px 10px;
+    border:1px solid #e5e5e5;
+    border-radius:999px;
+    background:#fff;
+    font-size:12px;
+  }
+  

@@ -1,6 +1,107 @@
-backend/src/Bff.Api/obj/
-backend/src/BuildingBlocks/obj/
-backend/src/Customers.Api/obj/
-backend/src/Orders.Api/obj/
-backend/src/Orders.Read.Projector/obj/
-backend/src/OutboxRelay.Worker/obj/
+############################
+# OS & IDE junk
+############################
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+*.user
+*.sln.docstates
+*.vs/
+.vscode/
+.idea/
+
+############################
+# .NET / ASP.NET Core
+############################
+bin/
+obj/
+out/
+launchSettings.json
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.pdb
+*.cache
+*.suo
+*.userprefs
+*.nupkg
+*.snupkg
+project.lock.json
+artifacts/
+*.dll
+*.exe
+*.deps.json
+*.runtimeconfig.json
+*.xml
+*.trx
+TestResults/
+App_Data/
+wwwroot/lib/
+*.local.json
+.env
+node_modules/
+
+# EF Migrations (optional: include if you version them)
+# Uncomment next line if you do NOT want EF migrations in repo:
+# **/Migrations/
+
+############################
+# Angular / NodeJS
+############################
+# dependencies
+frontend/angular-ui/node_modules/
+frontend/angular-ui/dist/
+frontend/angular-ui/.angular/
+frontend/angular-ui/.cache/
+frontend/angular-ui/.output/
+frontend/angular-ui/.env
+frontend/angular-ui/npm-debug.log*
+frontend/angular-ui/yarn-error.log*
+frontend/angular-ui/package-lock.json
+frontend/angular-ui/coverage/
+frontend/angular-ui/.DS_Store
+frontend/angular-ui/tmp/
+frontend/angular-ui/out-tsc/
+
+############################
+# Docker & Environment
+############################
+*.env
+docker-compose.override.yml
+docker-compose.*.yml.backup
+**/pgdata/
+**/volumes/
+**/docker-data/
+**/tmp/
+logs/
+**/logs/
+*.pid
+*.sock
+
+############################
+# Build artifacts
+############################
+/dist/
+/build/
+/publish/
+/coverage/
+*.zip
+*.tar.gz
+*.tgz
+
+############################
+# Misc
+############################
+/secrets/
+secret.*
+*.keystore
+*.pem
+*.key
+*.crt
+

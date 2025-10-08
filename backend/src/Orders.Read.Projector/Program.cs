@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using System.Net.Http;
 using System.Net.Http.Json;
 
 var builder = Host.CreateApplicationBuilder(args);

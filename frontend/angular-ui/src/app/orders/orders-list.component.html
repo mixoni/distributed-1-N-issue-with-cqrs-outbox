@@ -1,14 +1,28 @@
-﻿<div class=""toolbar"">
-  <button (click)=""setMode('naive')"" [class.active]=""mode() === 'naive'"">Naive (N+1)</button>
-  <button (click)=""setMode('batched')"" [class.active]=""mode() === 'batched'"">Batched</button>
-  <button (click)=""setMode('read')"" [class.active]=""mode() === 'read'"">CQRS Read</button>
+<div class="toolbar">
+  <button (click)="setMode('naive')"  [class.active]="mode() === 'naive'">Naive (N+1)</button>
+  <button (click)="setMode('batched')" [class.active]="mode() === 'batched'">Batched</button>
+  <button (click)="setMode('read')"    [class.active]="mode() === 'read'">CQRS Read</button>
 </div>
-<div *ngIf=""loading()"">Loadingâ€¦</div>
-<div *ngIf=""error()"">{{error()}}</div>
-<table *ngIf=""!loading() && !error()"">
-  <thead><tr><th>OrderId</th><th>Customer</th><th>Total</th></tr></thead>
+
+<div *ngIf="loading()">Loading…</div>
+<div *ngIf="error()">{{ error() }}</div>
+
+<div *ngIf="!loading()" style="margin:8px 0; display:flex; gap:12px; flex-wrap:wrap;">
+  <div class="kpi">⏱️ Elapsed: <b>{{ elapsedMs() }}</b> ms</div>
+  <div class="kpi">🌐 Total HTTP: <b>{{ totalReq() }}</b></div>
+  <!-- 👇 escape zagrade -->
+  <div class="kpi" *ngIf="mode()==='naive'">👤 /customers/&#123;id&#125;: <b>{{ custByIdReq() }}</b></div>
+  <div class="kpi" *ngIf="mode()==='batched'">📦 /customers/batch: <b>{{ custBatchReq() }}</b></div>
+  <div class="kpi" *ngIf="mode()!=='read'">🧾 /orders: <b>{{ ordersListReq() }}</b></div>
+  <div class="kpi" *ngIf="mode()==='read'">📚 /orders/read: <b>{{ ordersReadReq() }}</b></div>
+</div>
+
+<table *ngIf="!loading() && !error()">
+  <thead>
+    <tr><th>OrderId</th><th>Customer</th><th>Total</th></tr>
+  </thead>
   <tbody>
-    <tr *ngFor=""let o of data()"">
+    <tr *ngFor="let o of data()">
       <td>{{ o.id || o.orderId }}</td>
       <td>{{ o.customerName }}</td>
       <td>{{ o.total }}</td>
