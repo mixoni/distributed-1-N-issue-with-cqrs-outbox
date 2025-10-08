@@ -1,6 +1,6 @@
-﻿# 🚀 N+1 Problem resolved by CQRS + Outbox Pattern (ASP.NET Core + Angular + RabbitMQ)
+﻿# 🚀 1+N Problem resolved by CQRS + Outbox Pattern (ASP.NET Core + Angular + RabbitMQ)
 
-This proof-of-concept demonstrates how **N+1 queries** can severely impact performance in distributed systems — and how to eliminate them using:
+This proof-of-concept demonstrates how **1+N queries** can severely impact performance in distributed systems — and how to eliminate them using:
 - **Batched API calls**
 - **CQRS (Command Query Responsibility Segregation)**
 - **Outbox Pattern** for reliable event propagation via **RabbitMQ**
@@ -24,7 +24,7 @@ This proof-of-concept demonstrates how **N+1 queries** can severely impact perfo
       ▼                   ▼
 ┌───────────────────────────────────────────┐
 │                 BFF.Api                   │
-│  /api/orders/v1/naive    → N+1 calls      │
+│  /api/orders/v1/naive    → 1+N calls      │
 │  /api/orders/v1/batched  → 1 batch call   │
 │  /api/orders/v2/read     → CQRS read model│
 └───────────────────────────────────────────┘
@@ -93,16 +93,16 @@ or PowerShell:
 .\seed-orders.ps1 -Count 4000 -Concurrency 30
 ```
 
-This creates ~4000 orders for 3 customers to make the N+1 problem visible.
+This creates ~4000 orders for 3 customers to make the 1+N problem visible.
 
 ---
 
-## 👀 Observe the N+1 Problem
+## 👀 Observe the 1+N Problem
 
 Open [http://localhost:4200](http://localhost:4200)
 
 Switch between:
-- 🟥 **Naive (N+1)** → 4001 HTTP calls  
+- 🟥 **Naive (1+N)** → 4001 HTTP calls  
 - 🟨 **Batched** → 2 HTTP calls (Orders + Batch Customers)  
 - 🟩 **CQRS Read** → 1 DB query (no network joins)
 
@@ -131,7 +131,7 @@ If a customer’s name changes, `Customers.Api` emits a `CustomerRenamed` event,
 ### BFF
 | Mode | Endpoint | Description |
 |------|-----------|-------------|
-| Naive | `/api/orders/v1/naive` | N+1 HTTP calls to Customers |
+| Naive | `/api/orders/v1/naive` | 1+N HTTP calls to Customers |
 | Batched | `/api/orders/v1/batched` | Single batch call |
 | CQRS | `/api/orders/v2/read-model` | Reads denormalized model |
 
@@ -168,10 +168,10 @@ If a customer’s name changes, `Customers.Api` emits a `CustomerRenamed` event,
 
 | Pattern | Strength | Weakness |
 |----------|-----------|-----------|
-| **Naive (N+1)** | simplest to implement | exponential network overhead |
+| **Naive (1+N)** | simplest to implement | exponential network overhead |
 | **Batched** | huge performance gain, minimal refactor | still synchronous aggregation |
 | **CQRS + Outbox** | fastest, reliable, scalable | eventual consistency, more moving parts |
 
 ---
 
-✅ **Result:** clear, measurable demonstration of how **CQRS + Outbox Pattern** eliminates the N+1 problem in a distributed .NET microservice environment.
+✅ **Result:** clear, measurable demonstration of how **CQRS + Outbox Pattern** eliminates the 1+N problem in a distributed .NET microservice environment.
