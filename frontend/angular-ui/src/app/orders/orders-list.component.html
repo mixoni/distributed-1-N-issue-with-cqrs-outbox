@@ -1,5 +1,5 @@
 <div class="toolbar">
-  <button (click)="setMode('naive')"  [class.active]="mode() === 'naive'">Naive (N+1)</button>
+  <button (click)="setMode('naive')"  [class.active]="mode() === 'naive'">Naive (1+N)</button>
   <button (click)="setMode('batched')" [class.active]="mode() === 'batched'">Batched</button>
   <button (click)="setMode('read')"    [class.active]="mode() === 'read'">CQRS Read</button>
 </div>
